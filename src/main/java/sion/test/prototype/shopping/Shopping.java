@@ -1,17 +1,21 @@
 package sion.test.prototype.shopping;
 
-import lombok.Getter;
-import lombok.Setter;
-import sion.test.prototype.cancel.Cancel;
-import sion.test.prototype.order.Order;
+import jakarta.persistence.*;
+import sion.test.prototype.user.User;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
+@Entity
 public class Shopping {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "shopping_id")
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
+
     private String type; // TODO Enum - ORDER, CANCEL
-    private Long userId;
     private String productName;
     private Integer totalPrice;
     private Integer quantity;
