@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 public class Shopping {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "shopping_id")
+    @Id
     private Long id;
 
     @ManyToOne
