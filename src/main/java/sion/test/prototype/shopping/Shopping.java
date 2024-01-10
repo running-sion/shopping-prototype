@@ -16,7 +16,8 @@ public class Shopping {
     @JoinColumn(name="user_id")
     private User user;
 
-    private String type; // TODO Enum - ORDER, CANCEL
+    @Enumerated(EnumType.STRING)
+    private Type type; // ORDER, CANCEL
     private String productName;
     private Integer totalPrice;
     private Integer quantity;
