@@ -1,10 +1,12 @@
 package sion.test.prototype.shopping;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import sion.test.prototype.user.User;
 
 import java.time.LocalDateTime;
 
+@Getter
 @Entity
 public class Shopping {
     @GeneratedValue(strategy = GenerationType.IDENTITY)

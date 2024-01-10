@@ -3,6 +3,8 @@ package sion.test.prototype.shopping;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -11,8 +13,10 @@ import java.util.List;
 public class ShoppingController {
     private final ShoppingService shoppingService;
 
-    @GetMapping("/shopping/list")
-    public List<Shopping> getShoppingList() {
-        return null;
+    @GetMapping("/shopping/list/{id}")
+    @ResponseBody
+    public List<Shopping> getShoppingList(@PathVariable("id") Long userId) {
+        List<Shopping> list = shoppingService.findAllByUser(userId);
+        return list;
     }
 }
