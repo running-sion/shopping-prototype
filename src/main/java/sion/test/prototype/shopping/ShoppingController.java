@@ -3,6 +3,7 @@ package sion.test.prototype.shopping;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,8 +22,9 @@ public class ShoppingController {
     @GetMapping("/shopping/list/{id}")
     @ResponseBody
     public ResponseEntity<?> getShoppingList(@PathVariable("id") Long userId, @RequestParam("page") int page, @RequestParam("size") int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        List<Shopping> list = shoppingService.findAllByUser(userId, pageable);
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "createdAt"));
+        List<Shopping> list = shoppingService.findAllByUser(userId, pageRequest);
+
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 }
